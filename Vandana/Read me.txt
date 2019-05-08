@@ -1,0 +1,11 @@
+READ ME 
+
+1. Download the Apache Jena TDB package from the official Website
+
+2. Open the package using Eclipse
+
+3. In the 'Jena - example' subdirectory, create a new folder of your choice. 
+
+4. In the created folder, use the loading and querying code along with the configuration file. 
+
+5. Please check to ensure that pom.xml of your package is similar to the pom.xml uploaded. 
