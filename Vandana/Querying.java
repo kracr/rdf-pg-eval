@@ -40,11 +40,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 
-public class q
+public class Querying
 {
 	public static void main(String ...argv) {
 		
-		InputStream in = finalLoading.class.getResourceAsStream("configFile.properties"); 
+	InputStream in = finalLoading.class.getResourceAsStream("configFile.properties"); 
 		
     	Properties config = new Properties(); 
     	
@@ -93,11 +93,11 @@ public class q
         {
             if (file.isFile())
             {
-                String x=file.getName();
+                String f=file.getName();
                 
                 String absPath=file.getAbsolutePath();
                 
-                if (x.endsWith(".txt"))
+                if (f.endsWith(".txt"))
                 {
                 	BufferedReader reader ;
                 	
