@@ -61,12 +61,12 @@ public class finalLoading
         
         	if (file.isFile()){
             
-        		String x = file.getName();
+        		String f = file.getName();
                 
-        		if (x.endsWith(".nt"))   // this helps in loading all files present in the folder with .nt extension for Watdiv, .n3 for SP2B, .owl for LUBM
+        		if (f.endsWith(".nt"))   // this helps in loading all files present in the folder with .nt extension for Watdiv, .n3 for SP2B, .owl for LUBM
                 {
                 	
-                	System.out.println("Opening File " + x);
+                	System.out.println("Opening File " + f);
                 	
                 	System.out.println();
                 	
