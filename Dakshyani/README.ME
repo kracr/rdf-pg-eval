@@ -1,0 +1,249 @@
+1)Latest source code on Github
+The latest source code for Virtuoso can be obtained from Github using :
+
+$ git clone git://github.com/openlink/virtuoso-opensource.git
+
+1.1)Using Pre-built binaries: 
+
+These periodically produced pre-built binaries, typically from stable milestones, will let you get up-and-running quickly with VOS, without building from code yourself.
+You can manually browse to locate pre-built binaries of this and other versions, or download via the links below.
+
+1.1.1)GNU/Linux:
+Built against glibc 2.5, this should work on all more recent glibc versions: https://sourceforge.net/projects/virtuoso/files/virtuoso/7.2.5/virtuoso-opensource.x86_64-generic_glibc25-linux-gnu.tar.gz/download
+
+1.1.2)macOS a/k/a Mac OS X:
+A drag-and-drop installer for macOS (Mavericks [10.9] and later): https://sourceforge.net/projects/virtuoso/files/virtuoso/7.2.5/virtuoso-opensource-7.2.5-macosx-app.dmg/download
+
+1.1.3)Microsoft Windows:
+A standard double-click installer for Windows: https://sourceforge.net/projects/virtuoso/files/
+
+Obtaining  GPL license : http://vos.openlinksw.com/owiki/wiki/VOS/VOSLicense
+
+
+
+2)What is Jena?
+Jena is an open source Semantic Web framework for Java. It provides an API to extract data from and write to RDF graphs. The graphs are represented as an abstract "model". A model can be sourced with data from files, databases, URIs or a combination of these. A Model can also be queried through SPARQL and updated through SPARUL.
+
+2.1)What is the Virtuoso Jena Provider?
+The Virtuoso Jena RDF Data Provider is a fully operational Native Graph Model Storage Provider for the Jena Framework, which enables Semantic Web applications written using the Jena RDF Frameworks to directly query the Virtuoso RDF Quad Store. Providers are available for the latest Jena 2.6.x - 2.13.x and 3.0.x versions. 
+
+2.1.2)Setting up the JDBC connection strings therein to point to a valid Virtuoso Server instance, using the form: 
+
+"jdbc:virtuoso://<virtuoso-hostname-or-IP-address>[:<data port>]/charset=UTF-8/log_enable=2", "<username>", "<password>"   
+Default data port : 1111
+Default username : dba
+Default password : dba
+
+
+2.2)Prerequisites:
+
+Download the latest Virtuoso Jena Provider for your Jena framework version, Virtuoso JDBC Driver, Jena Framework, and associated classes and sample programs.
+
+Note: You must use a matching set of Jena Provider and JDBC Driver.
+The Jena Provider for Jena 2.6 requires the Virtuoso JDBC 3 Driver.
+The Jena Provider for Jena 2.1x.x and 3.0.x requires the Virtuoso JDBC 4 Driver. 
+
+2.2.1)This project uses Jena 3.0.x.
+
+Virtuoso Jena 3.0.x Provider JAR file : virt_jena3.jar 
+Virtuoso JDBC 4 Driver JAR file	: virtjdbc4.jar
+Sample programs JDBC 4 driver Jar and Jena Provider jar can be downloaded from link : http://vos.openlinksw.com/owiki/wiki/VOS/VOSDownload#Jena%20Provider
+
+
+2.2.2)Jena 3.0.x dependencies : 
+
+junit-4.5.jar
+commons-lang3-3.3.2.jar
+jena-arq-3.0.0.jar
+jena-iri-3.0.0.jar
+jena-base-3.0.0.jar
+jena-core-3.0.0.jar
+jena-core-3.0.0-tests.jar
+jcl-over-slf4j-1.7.12.jar
+log4j-1.2.17.jar
+slf4j-api-1.7.12.jar
+slf4j-log4j12-1.7.12.jar
+xercesImpl-2.11.0.jar
+xml-apis-1.4.01.jar
+jena-shaded-guava-3.0.0.jar
+virtjdbc4.jar
+virt_jena3.jar
+
+2.2.3)Bypass Jena/ARQ parser
+To use Virtuoso-specific SPARQL extensions, queries must bypass the Jena/ARQ parser and go straight to the Virtuoso server. This is done by using the VirtuosoQueryExecutionFactory.create() method, instead of and without the Jena-specific QueryFactory.create() method, which always invokes the Jena/ARQ parser, which in turn rejects any Virtuoso-specific extensions. Thus one would execute a query as follows to bypass the Jena parser --
+
+
+VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (query, set);
+vqe.execSelect();
+
+-- rather than --
+
+Query sparql = QueryFactory.create(query);
+VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create (sparql, set);
+vqe.execSelect();
+
+3)Benchmarks:
+Repository for benchmarks : https://github.com/earthquakesan/ISWC-2016-SQBenchmarks
+
+3.1) WatDiv Bench mark :
+Compiling WatDiv :
+The only dependencies are the Boost libraries (https://www.boost.org/) and the Unix words file (i.e., make sure you have a wordlist package installed under /usr/share/dict/). Once you have installed Boost, simply execute the following commands on UNIX:
+
+  tar xvf watdiv_v05.tar
+  cd watdiv
+  export BOOST_HOME=/usr/local
+  make
+  cd bin/Release
+  **The last step above is important.	To run the data generator, issue the following command:
+
+  ./watdiv -d <model-file> <scale-factor>
+  ./watdiv -d $(pwd)/../../model/wsdbm-data-model.txt 1 > saved.nt
+  
+  You will find a model file in the model sub-directory where WatDiv was installed. Using a scale factor of 1 will generate     approximately 100K triples. 
+
+  To run the query generator, issue the following command:
+
+  ./watdiv -q <model-file> <query-file> <query-count> <recurrence-factor>
+  ./watdiv -q $(pwd)/../../model/wsdbm-data-model.txt $(pwd)/../../testsuite/* 1 1 > queries.txt
+  
+  To run the query generator, issue the following command:
+  ./watdiv -q <model-file> <query-file> <query-count> <recurrence-factor>
+  ./watdiv -s $(pwd)/../../model/wsdbm-data-model.txt $(pwd)/saved.nt 100 100 > queries-templates.txt
+
+
+**Use the same model file in the model sub-directory where WatDiv was installed. You will find the basic testing query templates in the testsuite sub-directory where WatDiv was installed.
+
+3.2)SP2Bench (http://dbis.informatik.uni-freiburg.de/forschung/projekte/SP2B/)
+
+Running data generator:
+
+./sp2b_gen --help
+./sp2b_gen -t 100000 dataset.n3
+ 
+ The SP²Bench benchmark queries:  http://dbis.informatik.uni-freiburg.de/index.php?project=SP2B/queries.php
+ Download section, where you find both the current version of the data generator and the benchmark queries as text files:
+ http://dbis.informatik.uni-freiburg.de/index.php?project=SP2B/download.php
+ 
+ 3.3)LUBM (http://swat.cse.lehigh.edu/projects/lubm/)
+ Running generator:
+  mvn package
+  ./generate.sh --help
+  mkdir -p generated/
+  ./generate.sh --quiet --timing --compress -u 1 --consolidate Full  --format NTRIPLES --threads 8 -o generated/
+  
+  Queries for LUBM : http://swat.cse.lehigh.edu/projects/lubm/queries-sparql.txt
+  GitHub project link : https://github.com/rvesse/lubm-uba
+ 
+ 4)Results:
+ 4.1)WatDiv :
+ For 100K triples : 
+  Count: 105384
+  Loading Time (in milliseconds): 9175
+  
+  Execution Time for query (millisecond) 1 = 41
+  Execution Time for query (millisecond) 2 = 44
+  Execution Time for query (millisecond) 3 = 48
+  Execution Time for query (millisecond) 4 = 13
+  Execution Time for query (millisecond) 5 = 24
+  Execution Time for query (millisecond) 6 = 10
+  Execution Time for query (millisecond) 7 = 76
+  Execution Time for query (millisecond) 8 = 25
+  Execution Time for query (millisecond) 9 = 8
+  Execution Time for query (millisecond) 10 = 20
+  Execution Time for query (millisecond) 11 = 25
+  Execution Time for query (millisecond) 12 = 12
+  Execution Time for query (millisecond) 13 = 5
+  Execution Time for query (millisecond) 14 = 790
+  Execution Time for query (millisecond) 15 = 5
+  Execution Time for query (millisecond) 16 = 5
+  Execution Time for query (millisecond) 17 = 9
+  Execution Time for query (millisecond) 18 = 7
+  Execution Time for query (millisecond) 19 = 5
+  Execution Time for query (millisecond) 20 = 4
+
+  For 200K triples : 
+  Count: 214819
+  Loading Time (in milliseconds): 11544
+  
+  Execution Time for query (millisecond) 1 = 105
+  Execution Time for query (millisecond) 2 = 155
+  Execution Time for query (millisecond) 3 = 198
+  Execution Time for query (millisecond) 4 = 38
+  Execution Time for query (millisecond) 5 = 167
+  Execution Time for query (millisecond) 6 = 35
+  Execution Time for query (millisecond) 7 = 791
+  Execution Time for query (millisecond) 8 = 83
+  Execution Time for query (millisecond) 9 = 24
+  Execution Time for query (millisecond) 10 = 13
+  Execution Time for query (millisecond) 11 = 7
+  Execution Time for query (millisecond) 12 = 8
+  Execution Time for query (millisecond) 13 = 11
+  Execution Time for query (millisecond) 14 = 4953
+  Execution Time for query (millisecond) 15 = 24
+  Execution Time for query (millisecond) 16 = 35
+  Execution Time for query (millisecond) 17 = 13
+  Execution Time for query (millisecond) 18 = 25
+  Execution Time for query (millisecond) 19 = 9
+  Execution Time for query (millisecond) 20 = 14
+  
+ For 300K triples : 
+  Count: 321027
+  Loading Time (in milliseconds): 16291
+  
+  Execution Time for query (millisecond) 1 = 705
+  Execution Time for query (millisecond) 2 = 24
+  Execution Time for query (millisecond) 3 = 26
+  Execution Time for query (millisecond) 4 = 6
+  Execution Time for query (millisecond) 5 = 15
+  Execution Time for query (millisecond) 6 = 10
+  Execution Time for query (millisecond) 7 = 58
+  Execution Time for query (millisecond) 8 = 18
+  Execution Time for query (millisecond) 9 = 7
+  Execution Time for query (millisecond) 10 = 5
+  Execution Time for query (millisecond) 11 = 4
+  Execution Time for query (millisecond) 12 = 5
+  Execution Time for query (millisecond) 13 = 4
+  Execution Time for query (millisecond) 14 = 1062
+  Execution Time for query (millisecond) 15 = 6
+  Execution Time for query (millisecond) 16 = 12
+  Execution Time for query (millisecond) 17 = 6
+  Execution Time for query (millisecond) 18 = 13
+  Execution Time for query (millisecond) 19 = 15
+  Execution Time for query (millisecond) 20 = 6
+  
+For 500K triples : 
+  Count: 544648
+  Loading Time (in milliseconds): 24785
+  
+  Execution Time for query (millisecond) 1 = 952
+  Execution Time for query (millisecond) 2 = 1150
+  Execution Time for query (millisecond) 3 = 1963
+  Execution Time for query (millisecond) 4 = 589
+  Execution Time for query (millisecond) 5 = 362
+  Execution Time for query (millisecond) 6 = 207
+  Execution Time for query (millisecond) 7 = 62
+  Execution Time for query (millisecond) 8 = 553
+  Execution Time for query (millisecond) 9 = 178
+  Execution Time for query (millisecond) 10 = 137
+  Execution Time for query (millisecond) 11 = 5
+  Execution Time for query (millisecond) 12 = 4
+  Execution Time for query (millisecond) 13 = 4
+  Execution Time for query (millisecond) 14 = 1304
+  Execution Time for query (millisecond) 15 = 5
+  Execution Time for query (millisecond) 16 = 49
+  Execution Time for query (millisecond) 17 = 219
+  Execution Time for query (millisecond) 18 = 6
+  Execution Time for query (millisecond) 19 = 321
+  Execution Time for query (millisecond) 20 = 3
+
+
+For 1M triples : 
+  Count: 1092343
+  Loading Time (in milliseconds): 54375
+ 
+
+
+Please note:
+
+For LUBM : inferencing has been tried using Open Coded Inference where all combinations of subclass and subproperty relations are expressed as unions. 
+Link : http://vos.openlinksw.com/owiki/wiki/VOS/VOSArticleLUBMBenchmark
