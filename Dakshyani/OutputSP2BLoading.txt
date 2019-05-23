@@ -1,2 +1,0 @@
-Count : 50168
-Loading time in milliseconds : 3598
