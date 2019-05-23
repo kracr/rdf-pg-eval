@@ -1,10 +1,14 @@
 
-#[Blazegraph Installation](https://wiki.blazegraph.com/wiki/index.php/Quick_Start)
+### [Blazegraph Installation]  
+ (https://wiki.blazegraph.com/wiki/index.php/Quick_Start)  
  You will need to download Blazegraph.jar from the above mentioned link following for this project:
 
 ### Linux/Unix Intallation
  1. Download blazegraph.jar from https://sourceforge.net/projects/bigdata/files/latest/download .
- 2. Go to the folder containing the Jar usin Terminal and run the jar using java -server -Xmx4g -jar blazegraph.jar .
+ 2. Go to the folder containing the Jar using Terminal and run the jar using 
+ ```
+ java -server -Xmx4g -jar blazegraph.jar .
+ ```
  3. you will get following as output
 
 ```
@@ -75,7 +79,7 @@ This message means that Blazegraph has been set up.
 
 
 
-#LUBM Generation:
+### LUBM  Triple Generation:
 
 -- The official site of LUBM can be found at: http://swat.cse.lehigh.edu/projects/lubm/ . LUBM provides Ontology data about college departments, classes and professors. There are 14 queries provided in SPARQL to test response times of the system.
 Steps followed to generate triples for Experiment.  
@@ -102,11 +106,11 @@ option example:
 java edu.lehigh.swat.bench.uba.Generator -univ 2 -index 0 -seed 0 -onto http://swat.cse.lehigh.edu/onto/univ-bench.owl .      
 This will generate 2 universities data, with the default data in OWL file. If you want to generate daml, then add " -daml" before "-onto".
 
-#Usage
+### Usage
 
-Import the project in your IDE or navigate through console.
-2. Locate the config.properties `Akanksha/blazegraph/Configuration.properties`
-3. Set the parameters in config.properties file as follows.
+Import the project in your IDE or navigate through console.  
+2. Locate the config.properties `Akanksha/blazegraph/Configuration.properties`  
+3. Set the parameters in config.properties file as follows.  
 ```
 sparqlEndPoint=http://localhost:9999/blazegraph
 repositoryName=watdiv_500k
@@ -121,13 +125,14 @@ TripleInputforConversion=Nt
 5. Run DataLoading.java to load data into Blazegraph.
 6. Run DataQuerying.java to run all the queries on the data provided in config file.
 
-#Bulk Load
+### Run Bulk Load
 
 To do Bulk Load , run Bulk Load script present in `Akanksha/Bulk Load ' folder.
 
  To run the script use command :
  ```
- sh loadRestAPI.sh /path to Triples
+ sh loadRestAPI.sh  (dir)*
  ```
-
+ example:sh loadRestAPI.sh /home/Akanksha/Desktop/ExperimentTestFolder/Triples   
+ 
  The script uses fastload.properties that can be found in `Akanksha/Bulk Load` .
