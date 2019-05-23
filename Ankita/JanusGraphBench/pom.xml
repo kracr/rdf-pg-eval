@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ankita</groupId>
+  <artifactId>JanusGraphBench</artifactId>
+  <version>0.2.2</version>
+  <packaging>jar</packaging>
+
+  <name>JanusGraphBench</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+<!--      <scope>compile</scope> -->
+    </dependency>
+        <dependency>
+			<groupId>org.janusgraph</groupId>
+			<artifactId>janusgraph-core</artifactId>
+			<version>${project.version}</version>
+<!--			      <scope>compile</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.janusgraph</groupId>
+			<artifactId>janusgraph-cassandra</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.janusgraph</groupId>
+			<artifactId>janusgraph-es</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+    		<groupId>xml-apis</groupId>
+    	<artifactId>xml-apis</artifactId>
+    	<version>1.4.01</version>
+	</dependency>
+		<dependency>
+    		<groupId>io.github.litmus-benchmark-suite</groupId>
+    		<artifactId>gremlinator</artifactId>
+    		<version>1.0</version>
+    	<!--  	<scope>runtime</scope> -->
+        </dependency>
+        
+    <dependency>
+	    <groupId>org.apache.jena</groupId>
+	    <artifactId>apache-jena-libs</artifactId>
+	    <version>3.0.0</version>
+	    <type>pom</type>
+	</dependency>
+
+  </dependencies>
+</project>

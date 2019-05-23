@@ -1,0 +1,186 @@
+#mapping
+SELECT ?v0 ?v4 ?v6 ?v7 WHERE 
+{
+	?v0	sorg:caption	?v1 .
+	?v0	sorg:text	?v2 .
+	?v0	sorg:contentRating	?v3 .
+	?v0	rev:hasReview	?v4 .
+	?v4	rev:title	?v5 .
+	?v4	rev:reviewer	?v6 .
+	?v7	sorg:actor	?v6 .
+	?v7	sorg:language	?v8 .
+}
+#end
+#mapping
+SELECT ?v0 ?v3 ?v4 ?v8 WHERE 
+{
+	?v0	sorg:legalName	?v1 .
+	?v0	gr:offers	?v2 .
+	?v2	sorg:eligibleRegion	wsdbm:Country5 .
+	?v2	gr:includes	?v3 .
+	?v4	sorg:jobTitle	?v5 .
+	?v4	foaf:homepage	?v6 .
+	?v4	wsdbm:makesPurchase	?v7 .
+	?v7	wsdbm:purchaseFor	?v3 .
+	?v3	rev:hasReview	?v8 .
+	?v8	rev:totalVotes	?v9 .
+}
+#end
+#mapping
+SELECT ?v0 WHERE 
+{
+	?v0	wsdbm:likes	?v1 .
+	?v0	wsdbm:friendOf	?v2 .
+	?v0	dc:Location	?v3 .
+	?v0	foaf:age	?v4 .
+	?v0	wsdbm:gender	?v5 .
+	?v0	foaf:givenName	?v6 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 ?v3 ?v4 ?v5 WHERE {
+	?v0	og:tag	?v1 .
+	?v0	rdf:type	?v2 .
+	?v3	sorg:trailer	?v4 .
+	?v3	sorg:keywords	?v5 .
+	?v3	wsdbm:hasGenre	?v0 .
+	?v3	rdf:type	wsdbm:ProductCategory2 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 WHERE {
+	?v0	foaf:homepage	?v1 .
+	?v0	og:title	?v2 .
+	?v0	rdf:type	?v3 .
+	?v0	sorg:caption	?v4 .
+	?v0	sorg:description	?v5 .
+	?v1	sorg:url	?v6 .
+	?v1	wsdbm:hits	?v7 .
+	?v0	wsdbm:hasGenre	?v8 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE {
+	?v0	sorg:contentRating	?v1 .
+	?v0	sorg:contentSize	?v2 .
+	?v0	wsdbm:hasGenre	?v3 .
+	?v4	wsdbm:makesPurchase	?v5 .
+	?v5	wsdbm:purchaseDate	?v6 .
+	?v5	wsdbm:purchaseFor	?v0 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 ?v8 WHERE {
+	?v0	foaf:homepage	?v1 .
+	?v2	gr:includes	?v0 .
+	?v0	og:tag	?v3 .
+	?v0	sorg:description	?v4 .
+	?v0	sorg:contentSize	?v8 .
+	?v1	sorg:url	?v5 .
+	?v1	wsdbm:hits	?v6 .
+	?v1	sorg:language	wsdbm:Language0 .
+	?v7	wsdbm:likes	?v0 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v3 ?v4 ?v5 ?v6 WHERE {
+	?v0	gr:includes	?v1 .
+	?v2	gr:offers	?v0 .
+	?v0	gr:price	?v3 .
+	?v0	gr:validThrough	?v4 .
+	?v1	og:title	?v5 .
+	?v1	rdf:type	?v6 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0	wsdbm:subscribes	?v1 .
+	?v2	sorg:caption	?v3 .
+	?v0	wsdbm:likes	?v2 .
+}
+#end
+#mapping
+SELECT ?v1 ?v2 WHERE {
+	?v0	gn:parentCountry	?v1 .
+	?v2	wsdbm:likes	wsdbm:Product0 .
+	?v2	sorg:nationality	?v1 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 WHERE {
+	?v0	wsdbm:likes	?v1 .
+	?v0	wsdbm:subscribes	?v2 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 WHERE {
+	?v0	og:tag	?v1 .
+	?v0	sorg:caption	?v2 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v3 WHERE {
+	?v0	sorg:jobTitle	?v1 .
+	?v2	gn:parentCountry	?v3 .
+	?v0	sorg:nationality	?v3 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v3 ?v4 ?v5 ?v6 ?v7 ?v8 ?v9 WHERE {
+	?v0	gr:includes	?v1 .
+	?v2	gr:offers	?v0 .
+	?v0	gr:price	?v3 .
+	?v0	gr:serialNumber	?v4 .
+	?v0	gr:validFrom	?v5 .
+	?v0	gr:validThrough	?v6 .
+	?v0	sorg:eligibleQuantity	?v7 .
+	?v0	sorg:eligibleRegion	?v8 .
+	?v0	sorg:priceValidUntil	?v9 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v3 WHERE {
+	?v0	dc:Location	?v1 .
+	?v0	sorg:nationality	?v2 .
+	?v0	wsdbm:gender	?v3 .
+	?v0	rdf:type	wsdbm:Role2 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 ?v3 ?v4 WHERE {
+	?v0	rdf:type	?v1 .
+	?v0	sorg:caption	?v2 .
+	?v0	wsdbm:hasGenre	?v3 .
+	?v0	sorg:publisher	?v4 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0	foaf:age	?v1 .
+	?v0	foaf:familyName	?v2 .
+	?v3	mo:artist	?v0 .
+	?v0	sorg:nationality	wsdbm:Country1 .
+}
+#end
+#mapping
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0	rdf:type	?v1 .
+	?v0	sorg:description	?v2 .
+	?v0	sorg:keywords	?v3 .
+	?v0	sorg:language	wsdbm:Language0 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v2 WHERE {
+	?v0	mo:conductor	?v1 .
+	?v0	rdf:type	?v2 .
+	?v0	wsdbm:hasGenre	?v3 .
+}
+#end
+#mapping
+SELECT ?v0 ?v1 ?v2 WHERE {
+	?v0	rdf:type	?v1 .
+	?v0	sorg:text	?v2 .
+	?v3	wsdbm:likes	?v0 .
+}
+#end
